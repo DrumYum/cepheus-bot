@@ -15,7 +15,7 @@ class BotWrapper {
 
   public useCommand<C extends CommandContext>(command: string, middleware: CommandMiddleware<C>, context: Omit<C, keyof CommandContext>) {
     this.telegrafBot.command(command, (ctx, next) => {
-      const mergedContext = Object.assign(ctx, context) as C;
+      const mergedContext = Object.assign(ctx, context) as unknown as C;
       middleware(mergedContext, next);
     });
   }
