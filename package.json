@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node clearBuild.js && tsc",
     "start": "node ./build/app.js",
-    "start:env": "(set -a; source ./.env; exec npm run start)"
+    "start:env": "(set -a; source ./.env; exec npm run start)",
+    "postinstall": "patch-package"
   },
   "author": "DrumYum",
   "license": "WTFPL",
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.0.8",
+    "patch-package": "^8.0.0",
     "typescript": "^5.8.3"
   }
 }
