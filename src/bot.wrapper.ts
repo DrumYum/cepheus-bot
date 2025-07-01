@@ -1,21 +1,19 @@
-import { Telegraf } from "telegraf";
-import { CommandContext, CommandMiddleware } from "./types";
-
+import { Bot, Context, MiddlewareFn } from "grammy";
 
 class BotWrapper {
-  private readonly telegrafBot: Telegraf;
+  private readonly bot: Bot;
 
   constructor(token: string) {
-    this.telegrafBot = new Telegraf(token);
+    this.bot = new Bot(token);
   }
 
   public start() {
-    this.telegrafBot.launch();
+    this.bot.start();
   }
 
-  public useCommand<C extends CommandContext>(command: string, middleware: CommandMiddleware<C>, context: Omit<C, keyof CommandContext>) {
-    this.telegrafBot.command(command, (ctx, next) => {
-      const mergedContext = Object.assign(ctx, context) as unknown as C;
+  public useCommand<C extends Context>(command: string, middleware: MiddlewareFn<C>, context: Omit<C, keyof Context>) {
+    this.bot.command(command, (ctx, next) => {
+      const mergedContext = Object.assign(ctx, context) as unknown as C; // TODO: looks ugly, need to refactor
       middleware(mergedContext, next);
     });
   }

@@ -1,5 +1,10 @@
+import { CommandContext, Context } from "grammy";
 import GetPlayersOperation from "../operation/getPlayers.operation";
-import { GetPlayersCommandContext } from "../types";
+
+type GetPlayersCommandContext = CommandContext<Context> & {
+  host: string;
+  port: number
+};
 
 class GetPlayersCommand {
   public static readonly COMMAND = "players";
@@ -8,7 +13,7 @@ class GetPlayersCommand {
     private readonly context: GetPlayersCommandContext
   ) {}
 
-  public static async middleware(context: GetPlayersCommandContext, next: () => Promise<void>) {
+  public static async middleware(context: GetPlayersCommandContext) {
     const command = new GetPlayersCommand(context);
 
     await command.execute();

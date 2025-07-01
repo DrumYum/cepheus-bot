@@ -1,19 +1,20 @@
 {
   "name": "cepheus-bot",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "scripts": {
     "build": "node clearBuild.js && tsc",
-    "start": "node ./build/app.js"
+    "start": "node ./build/app.js",
+    "start:env": "(set -a; source ./.env; exec npm run start)"
   },
   "author": "DrumYum",
-  "license": "MIT",
+  "license": "WTFPL",
   "dependencies": {
-    "minecraft-server-util": "^5.2.10",
-    "telegraf": "^4.8.5"
+    "grammy": "^1.36.3",
+    "minecraft-protocol": "^1.26.5"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
-    "typescript": "^4.7.4"
+    "@types/node": "^24.0.8",
+    "typescript": "^5.8.3"
   }
 }

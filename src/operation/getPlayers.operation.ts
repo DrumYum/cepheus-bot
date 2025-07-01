@@ -1,28 +1,42 @@
-import { QueryOperationContext } from "../types";
 import QueryOperation from "./query.operation";
 
-class GetPlayersOperation {
-  private constructor(private readonly context: QueryOperationContext) {}
+type Context = {
+  host: string;
+  port: number;
+};
 
-  public static build(context: QueryOperationContext) {
+class GetPlayersOperation {
+  private constructor(private readonly context: Context) {}
+
+  public static build(context: Context) {
     return new GetPlayersOperation(context);
   }
 
   public async execute() {
-    const data = await QueryOperation
+    const dataOrError = await QueryOperation
       .build(this.context)
       .execute();
 
+    if (dataOrError instanceof Error) return dataOrError.message;
+
+    // TODO: everything here is ugly, need to refactor
     let result = "";
     
-    if (!data.players.list.length) {
+    if (!dataOrError.length) {
       result += "Сейчас на сервере нет игроков"
       return result;
     }
 
-    result += "Список игроков онлайн:";
+    if (!dataOrError.filter((item) => !!item).length) {
+      result += `Сейчас на сервере ${dataOrError.length} игроков`;
+      return result;
+    }
 
-    for (const player of data.players.list) {
+    result += `Список игроков онлайн (${dataOrError.length}):`;
+
+    for (const player of dataOrError) {
+      if (!player) continue;
+
       result += `\n- ${player}`;
     }
 

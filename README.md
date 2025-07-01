@@ -1,15 +1,19 @@
 # cepheus-bot 🤖
 
-Simple Telegram bot for querying Minecraft server through default query protocol
+Simplest Telegram bot for querying Minecraft server through default query protocol. Made for myself. Responds in Russian
 
-**Tools**:
-- Typescript
-- [Telegraf](https://github.com/telegraf/telegraf)
-- [minecraft-server-util](https://github.com/PassTheMayo/minecraft-server-util)
+## Versions
+There are two versions available:
+- `legacy` branch: unmaintained, depends on deprecated [minecraft-server-util](https://github.com/PassTheMayo/minecraft-server-util) (UDP)
+- `master` branch: **recommended**, depends on [node-minecraft-protocol](https://github.com/PrismarineJS/node-minecraft-protocol) (TCP)
 
-**Installation**
+You can try both to see which one works for you
+
+## Installation
 ```bash
 git clone https://github.com/DrumYum/cepheus-bot
 
 cp .env-example .env
+
+docker compose up
 ```

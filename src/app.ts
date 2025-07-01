@@ -1,9 +1,9 @@
 import BotWrapper from "./bot.wrapper";
 import GetPlayersCommand from "./command/getPlayers.command";
 
-const BOT_TOKEN = process.env.BOT_TOKEN ?? "";
-const HOST = process.env.HOST ?? "localhost";
-const PORT = Number(process.env.PORT ?? 25565);
+const BOT_TOKEN = process.env["BOT_TOKEN"] ?? "";
+const HOST = process.env["HOST"] ?? "localhost";
+const PORT = Number(process.env["PORT"] ?? 25565);
 
 class App {
 	private readonly bot: BotWrapper;
