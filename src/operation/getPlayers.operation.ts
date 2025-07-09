@@ -34,7 +34,7 @@ class GetPlayersOperation {
 
     result += `Список игроков онлайн (${dataOrError.length}):`;
 
-    for (const player of dataOrError) {
+    for (const player of dataOrError.sort()) {
       if (!player) continue;
 
       result += `\n- ${player}`;
