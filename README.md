@@ -1,6 +1,6 @@
-# cepheus-bot 🤖
+# 🤖 Cepheus Observer (cepheus-bot)
 
-Simplest Telegram bot for querying Minecraft server through default query protocol. Made for myself. Responds in Russian
+Simplest Telegram bot for querying Minecraft server through [default query protocol](https://minecraft.wiki/w/Query). Made for myself. Responds in Russian
 
 ## Versions
 There are two versions available:
@@ -17,3 +17,11 @@ cp .env-example .env
 
 docker compose up
 ```
+
+## Limitations
+Modern Minecraft versions sometimes hide player nicknames behind "Anonymous Player", even for ~~pirate~~ offline servers
+
+## TODO:
+- [ ] track player online statistics
+- [ ] i18n
+- [ ] reduce docker images size (currently ~400MB)
